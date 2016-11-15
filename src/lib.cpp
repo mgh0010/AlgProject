@@ -6,6 +6,7 @@
 #include "../include/lib.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 
 /* Returns an array of given size filled with random numbers */
@@ -49,7 +50,7 @@ string_vector
 readinputfile()
 {
     std::string line;
-    std::ifstream file("../input.txt");
+    std::ifstream file("/home/michael/ClionProjects/AlgProject/input");
     if(file.is_open())
     {
         string_vector file_data;
@@ -63,6 +64,7 @@ readinputfile()
     } else
     {
         std::cout << "Could not open input.txt" << std::endl;
+        return string_vector{""};
     }
 }
 
@@ -72,8 +74,21 @@ parseinputfiledata(string_vector str_vector)
     // make vector to return
     vec_of_int_vectors size_and_vec;
     // Puts vector size into return vector
-    vec_of_int_vectors.push_back(int_vector{std::stoi(str_vector[0])});
+    int_vector size = int_vector{std::stoi(str_vector[0])};
+    size_and_vec.push_back(size);
 
-    // 
+    int_vector nums;
+    std::stringstream ss(str_vector[1]);
+    while(ss.good())
+    {
+        std::string str_num;
+        getline(ss, str_num, ',');
+        int num = std::stoi(str_num);
+        nums.push_back(num);
+    }
+
+    // Puts vector size into return vector
+    size_and_vec.push_back(nums);
+
     return size_and_vec;
 }
