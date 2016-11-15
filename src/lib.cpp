@@ -11,6 +11,12 @@
 
 #define NUM_OF_ALG_CALLS 10
 
+std::string output_filename = "/home/michael/ClionProjects/AlgProject/outputFiles/output";
+std::string time_filename = "/home/michael/ClionProjects/AlgProject/outputFiles/time";
+std::string input_filename = "/home/michael/ClionProjects/AlgProject/input";
+std::ofstream time_file(time_filename);
+std::ofstream output_file(output_filename);
+
 /* Fills the test vector with random number vectors */
 void
 filltestvec(vec_of_int_vectors &test_vec)
@@ -47,7 +53,7 @@ string_vector
 readinputfile()
 {
     std::string line;
-    std::ifstream file("/home/michael/ClionProjects/AlgProject/input");
+    std::ifstream file(input_filename);
     if(file.is_open())
     {
         string_vector file_data;
@@ -103,13 +109,20 @@ logbrutetimes(int_vector &brute_res, vec_of_int_vectors &test_vec, int test_vec_
             brutewithtwist(test_vec[i], (int)test_vec[i].size());
         }
         t = clock() - t;
-        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
-        if(i < test_vec_size - 1)
+        if(time_file.is_open())
         {
-            std::cout << ",";
+            time_file << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS * 1000;
+            if(i < test_vec_size - 1)
+            {
+            time_file << ",";
+            }
+        } else
+        {
+            std::cout << "Could not open time.txt" << std::endl;
+            return;
         }
     }
-    std::cout << std::endl;
+    time_file << std::endl;
 }
 
 void
@@ -124,13 +137,20 @@ logrecursivetimes(int_vector &recursive_res, vec_of_int_vectors &test_vec, int t
             recursive(test_vec[i], (int) test_vec[i].size());
         }
         t = clock() - t;
-        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
-        if(i < test_vec_size - 1)
+        if(time_file.is_open())
         {
-            std::cout << ",";
+            time_file << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS * 1000;
+            if(i < test_vec_size - 1)
+            {
+            time_file << ",";
+            }
+        } else
+        {
+            std::cout << "Could not open time.txt" << std::endl;
+            return;
         }
     }
-    std::cout << std::endl;
+    time_file << std::endl;
 }
 
 void
@@ -145,25 +165,31 @@ logiterativetimes(int_vector &iterative_res, vec_of_int_vectors &test_vec, int t
             efficientiterative(test_vec[i], (int)test_vec[i].size());
         }
         t = clock() - t;
-        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
-        if(i < test_vec_size - 1)
+        if(time_file.is_open())
         {
-            std::cout << ",";
+            time_file << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS * 1000;
+            if(i < test_vec_size - 1)
+            {
+            time_file << ",";
+            }
+        } else
+        {
+            std::cout << "Could not open time.txt" << std::endl;
+            return;
         }
+
     }
-    std::cout << std::endl;
+    time_file << std::endl;
 }
 
 void
 loginputresults(const int_vector &brute_res, const int_vector &recursive_res, const int_vector &iterative_res)
 {
-    std::string line;
-    std::ofstream file("/home/michael/ClionProjects/AlgProject/output");
-    if(file.is_open())
+    if(output_file.is_open())
     {
-        file << brute_res[0] << "," << brute_res[1] << "," << brute_res[2] << std::endl;
-        file << recursive_res[0] << "," << recursive_res[1] << "," << recursive_res[2] << std::endl;
-        file << iterative_res[0] << "," << iterative_res[1] << "," << iterative_res[2] << std::endl;
+        output_file << brute_res[0] << "," << brute_res[1] << "," << brute_res[2] << std::endl;
+        output_file << recursive_res[0] << "," << recursive_res[1] << "," << recursive_res[2] << std::endl;
+        output_file << iterative_res[0] << "," << iterative_res[1] << "," << iterative_res[2] << std::endl;
     } else
     {
         std::cout << "Could not open output.txt" << std::endl;
