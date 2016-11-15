@@ -4,7 +4,6 @@
 #include "include/lib.h"
 
 
-
 /* Runs program */
 int
 main()
@@ -15,32 +14,35 @@ main()
     {
         return -1;
     }
-
     vec_of_int_vectors size_and_vec = parseinputfiledata(input_file_data);
-    // Run brutewithtwist method
+
+    // Test algs with input.txt data
     int_vector brute_res = brutewithtwist(size_and_vec[1], size_and_vec[0][0]);
-    // Run recursive method
     int_vector recursive_res = recursive(size_and_vec[1], size_and_vec[0][0]);
-    // Run efficientiterative method
-    int_vector iterative = efficientiterative(size_and_vec[1], size_and_vec[0][0]);
-    
-    // make vector to hold all 21 test arrays
+    int_vector iterative_res = efficientiterative(size_and_vec[1], size_and_vec[0][0]);
+
+    // Write results from input.txt to output.txt
+    loginputresults(brute_res, recursive_res, iterative_res);
+
+    // Make vector to hold all 21 test arrays
     vec_of_int_vectors test_vec;
-    // set rand seed
-    srand(time(NULL));
-    // fill vector with random int vectors of correct sizes
+    // Set rand seed
+    srand((unsigned int)time(NULL));
+    // Fill vector with random int vectors of correct sizes
     filltestvec(test_vec);
 
-    // test recursive alg
-    int_vector result;
+    // Test algs with random generated data
     int test_vec_size = (int)test_vec.size();
-    for (int i = 0; i < test_vec_size; ++i) {
-        result = recursive(test_vec[i], (int)test_vec[i].size());
-        std::cout << result[0] << std::endl;
-    }
+    logbrutetimes(brute_res, test_vec, test_vec_size);
+    logrecursivetimes(recursive_res, test_vec, test_vec_size);
+    logiterativetimes(iterative_res, test_vec, test_vec_size);
 
     return 0;
 }
+
+
+
+
 
 
 

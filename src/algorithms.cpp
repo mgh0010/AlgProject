@@ -8,7 +8,7 @@
 /* Brute force method with a twist
  * Explain this alg*/
 int_vector
-brutewithtwist(int_vector vec, int vec_size)
+brutewithtwist(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
     int left_index = 0, right_index = 0;
@@ -42,7 +42,7 @@ brutewithtwist(int_vector vec, int vec_size)
 /* Recursively add sums and find the smallest
  * Explain this alg*/
 int_vector
-recursive(int_vector vec, int vec_size)
+recursive(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
 
@@ -65,7 +65,8 @@ recursive(int_vector vec, int vec_size)
     min_vec.push_back(right_index);
 
     // Recursion if not base case
-    if(vec_size > 1) {
+    if(vec_size > 1)
+    {
         // Remove last element from vector and recurse
         vec.pop_back();
         int_vector recursed_result_vec = recursive(vec, right_index);
@@ -84,7 +85,7 @@ recursive(int_vector vec, int vec_size)
 /* Brute force method with a twist
  * Explain this alg*/
 int_vector
-efficientiterative(int_vector vec, int vec_size)
+efficientiterative(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
     int abs_min = vec[0];

@@ -24,6 +24,15 @@ string_vector readinputfile();
 /* Returns vector with size and input file test vector */
 vec_of_int_vectors parseinputfiledata(string_vector str_vector);
 
+void logbrutetimes(int_vector &brute_res, vec_of_int_vectors &test_vec, int test_vec_size);
+
+void logrecursivetimes(int_vector &recursive_res, vec_of_int_vectors &test_vec, int test_vec_size);
+
+void logiterativetimes(int_vector &iterative_res, vec_of_int_vectors &test_vec, int test_vec_size);
+
+void loginputresults(const int_vector &brute_res, const int_vector &recursive_res, const int_vector &iterative_res);
+
+
 
 
 #endif //ALGPROJECT_LIB_H

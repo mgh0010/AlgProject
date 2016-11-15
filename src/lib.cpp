@@ -4,11 +4,12 @@
 
 #include <cstdlib>
 #include "../include/lib.h"
+#include "../include/algorithms.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <unistd.h>
 
+#define NUM_OF_ALG_CALLS 10
 
 /* Fills the test vector with random number vectors */
 void
@@ -87,4 +88,84 @@ parseinputfiledata(string_vector str_vector)
     size_and_vec.push_back(nums);
 
     return size_and_vec;
+}
+
+
+void
+logbrutetimes(int_vector &brute_res, vec_of_int_vectors &test_vec, int test_vec_size)
+{
+    clock_t t;
+    for (int i = 0; i < test_vec_size; ++i)
+    {
+        t = clock();
+        for(int j = 0; j < NUM_OF_ALG_CALLS; ++j)
+        {
+            brutewithtwist(test_vec[i], (int)test_vec[i].size());
+        }
+        t = clock() - t;
+        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
+        if(i < test_vec_size - 1)
+        {
+            std::cout << ",";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void
+logrecursivetimes(int_vector &recursive_res, vec_of_int_vectors &test_vec, int test_vec_size)
+{
+    clock_t t;
+    for (int i = 0; i < test_vec_size; ++i)
+    {
+        t = clock();
+        for(int j = 0; j < NUM_OF_ALG_CALLS; ++j)
+        {
+            recursive(test_vec[i], (int) test_vec[i].size());
+        }
+        t = clock() - t;
+        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
+        if(i < test_vec_size - 1)
+        {
+            std::cout << ",";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void
+logiterativetimes(int_vector &iterative_res, vec_of_int_vectors &test_vec, int test_vec_size)
+{
+    clock_t t;
+    for (int i = 0; i < test_vec_size; ++i)
+    {
+        t = clock();
+        for(int j = 0; j < NUM_OF_ALG_CALLS; ++j)
+        {
+            efficientiterative(test_vec[i], (int)test_vec[i].size());
+        }
+        t = clock() - t;
+        std::cout << (float)t / CLOCKS_PER_SEC / NUM_OF_ALG_CALLS;
+        if(i < test_vec_size - 1)
+        {
+            std::cout << ",";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void
+loginputresults(const int_vector &brute_res, const int_vector &recursive_res, const int_vector &iterative_res)
+{
+    std::string line;
+    std::ofstream file("/home/michael/ClionProjects/AlgProject/output");
+    if(file.is_open())
+    {
+        file << brute_res[0] << "," << brute_res[1] << "," << brute_res[2] << std::endl;
+        file << recursive_res[0] << "," << recursive_res[1] << "," << recursive_res[2] << std::endl;
+        file << iterative_res[0] << "," << iterative_res[1] << "," << iterative_res[2] << std::endl;
+    } else
+    {
+        std::cout << "Could not open output.txt" << std::endl;
+    }
 }
