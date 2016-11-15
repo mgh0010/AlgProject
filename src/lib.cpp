@@ -7,29 +7,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <unistd.h>
 
-
-/* Returns an array of given size filled with random numbers */
-int_vector
-get_rand_vector(int size)
-{
-    int_vector vec;
-
-    for (int index = 0; index < size; ++index)
-    {
-        // generate rand num between 1-1000
-        int rand_num = rand() % 1000 + 1;
-        // binary random decision to make it negative
-        if(rand() % 2 == 1)
-        {
-            rand_num *= -1;
-        }
-        // add number to back of vector
-        vec.push_back(rand_num);
-    }
-
-    return vec;
-}
 
 /* Fills the test vector with random number vectors */
 void
@@ -41,8 +20,25 @@ filltestvec(vec_of_int_vectors &test_vec)
     for (int size = 500; size <= 10000; size += 500)
     {
         // put rand vector into test vector
-        test_vec.push_back(get_rand_vector(100));
+        test_vec.push_back(get_rand_vector(size));
     }
+}
+
+/* Returns an array of given size filled with random numbers */
+int_vector
+get_rand_vector(int size)
+{
+    int_vector vec;
+
+    for (int index = 0; index < size; ++index)
+    {
+        // generate rand num between 1-1000
+        int rand_num = 1000 - rand() % 2000;
+        // add number to back of vector
+        vec.push_back(rand_num);
+    }
+
+    return vec;
 }
 
 /* Returns string vector of input.txt lines */

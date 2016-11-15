@@ -10,7 +10,32 @@
 int_vector
 brutewithtwist(int_vector vec, int vec_size)
 {
-    //
+    int_vector min_vec;
+    int left_index = 0, right_index = 0;
+    int local_min, abs_min = vec[0];
+
+    for (int i= 0; i < vec_size; ++i)
+    {
+        local_min = 0;
+        for (int j = i; j < vec_size; ++j)
+        {
+            local_min += vec[j];
+            if(local_min < abs_min)
+            {
+                abs_min = local_min;
+                left_index = i;
+                right_index = j;
+            }
+        }
+    }
+
+    // push min value
+    min_vec.push_back(abs_min);
+    // push indexes
+    min_vec.push_back(left_index);
+    min_vec.push_back(right_index);
+
+    return min_vec;
 }
 
 
@@ -61,5 +86,34 @@ recursive(int_vector vec, int vec_size)
 int_vector
 efficientiterative(int_vector vec, int vec_size)
 {
-    //
+    int_vector min_vec;
+    int abs_min = vec[0];
+    int curr_min = vec[0];
+    int left_index = 0, right_index = left_index;
+
+    for (int i = 1; i < vec_size; i++)
+    {
+        if(vec[i] < curr_min + vec[i])
+        {
+            curr_min = vec[i];
+            left_index = i;
+        }
+        else
+        {
+            curr_min = curr_min + vec[i];
+        }
+        if(curr_min < abs_min)
+        {
+            abs_min = curr_min;
+            right_index = i;
+        }
+    }
+
+    // push min value
+    min_vec.push_back(abs_min);
+    // push indexes
+    min_vec.push_back(left_index);
+    min_vec.push_back(right_index);
+
+    return min_vec;
 }
