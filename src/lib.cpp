@@ -162,7 +162,7 @@ logiterativetimes(int_vector &iterative_res, vec_of_int_vectors &test_vec, int t
         t = clock();
         for(int j = 0; j < NUM_OF_ALG_CALLS; ++j)
         {
-            efficientiterative(test_vec[i], (int)test_vec[i].size());
+            iterative(test_vec[i], (int) test_vec[i].size());
         }
         t = clock() - t;
         if(time_file.is_open())

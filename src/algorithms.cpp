@@ -85,7 +85,7 @@ recursive(int_vector &vec, int vec_size)
 
 
 
-/* Brute force method with a twist
+/* Iterative Algorithm.
  * This algorithm is a spin off of the Kadane algorithm to find the max contiguous subarray given an array
  * I found the Kadane algorithm here: http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
  *
@@ -93,27 +93,27 @@ recursive(int_vector &vec, int vec_size)
  * current index is, and sets the final min sub array whenever this found min sub array is smaller than
  * the current final min sub array. */
 int_vector
-efficientiterative(int_vector &vec, int vec_size)
+iterative(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
     int abs_min = vec[0];
-    int curr_min = vec[0];
+    int local_min = vec[0];
     int left_index = 0, right_index = left_index;
 
     for (int i = 1; i < vec_size; i++)
     {
-        if(vec[i] < curr_min + vec[i])
+        if(vec[i] < local_min + vec[i])
         {
-            curr_min = vec[i];
+            local_min = vec[i];
             left_index = i;
         }
         else
         {
-            curr_min = curr_min + vec[i];
+            local_min = local_min + vec[i];
         }
-        if(curr_min < abs_min)
+        if(local_min < abs_min)
         {
-            abs_min = curr_min;
+            abs_min = local_min;
             right_index = i;
         }
     }

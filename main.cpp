@@ -19,7 +19,7 @@ main()
     // Test algs with input.txt data
     int_vector brute_res = brute(size_and_vec[1], size_and_vec[0][0]);
     int_vector recursive_res = recursive(size_and_vec[1], size_and_vec[0][0]);
-    int_vector iterative_res = efficientiterative(size_and_vec[1], size_and_vec[0][0]);
+    int_vector iterative_res = iterative(size_and_vec[1], size_and_vec[0][0]);
 
     // Write results from input.txt to output.txt
     loginputresults(brute_res, recursive_res, iterative_res);
