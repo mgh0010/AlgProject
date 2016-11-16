@@ -1,7 +1,3 @@
-//
-// Created by michael on 11/14/16.
-//
-
 #ifndef ALGPROJECT_LIB_H
 #define ALGPROJECT_LIB_H
 

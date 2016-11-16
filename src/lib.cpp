@@ -1,7 +1,3 @@
-//
-// Created by michael on 11/14/16.
-//
-
 #include <cstdlib>
 #include "../include/lib.h"
 #include "../include/algorithms.h"

@@ -1,7 +1,3 @@
-//
-// Created by michael on 11/14/16.
-//
-
 #ifndef ALGPROJECT_ALGORITHMS_H
 #define ALGPROJECT_ALGORITHMS_H
 

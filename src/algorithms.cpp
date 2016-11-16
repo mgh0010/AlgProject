@@ -1,7 +1,3 @@
-//
-// Created by michael on 11/14/16.
-//
-
 #include "../include/algorithms.h"
 
 
