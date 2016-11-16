@@ -13,7 +13,7 @@ typedef std::vector<std::vector<int>> vec_of_int_vectors;
 /* Brute force method with a twist
  * Explain this alg*/
 int_vector
-brutewithtwist(int_vector &vec, int vec_size);
+brute(int_vector &vec, int vec_size);
 
 
 /* Brute force method with a twist

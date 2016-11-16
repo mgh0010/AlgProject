@@ -106,7 +106,7 @@ logbrutetimes(int_vector &brute_res, vec_of_int_vectors &test_vec, int test_vec_
         t = clock();
         for(int j = 0; j < NUM_OF_ALG_CALLS; ++j)
         {
-            brutewithtwist(test_vec[i], (int)test_vec[i].size());
+            brute(test_vec[i], (int) test_vec[i].size());
         }
         t = clock() - t;
         if(time_file.is_open())

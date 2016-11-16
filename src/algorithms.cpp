@@ -6,9 +6,10 @@
 
 
 /* Brute force method with a twist
- * Explain this alg*/
+ * This algorithms slowly and surely goes through every possible continuous sub array within the given array.
+ * It uses two for loops to accomplish this.*/
 int_vector
-brutewithtwist(int_vector &vec, int vec_size)
+brute(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
     int left_index = 0, right_index = 0;
@@ -40,7 +41,9 @@ brutewithtwist(int_vector &vec, int vec_size)
 
 
 /* Recursively add sums and find the smallest
- * Explain this alg*/
+ * This algorithms finds the min sub array within the given array starting at the last index.
+ * We start at the last index in order to pop the last element off from the array when passing the argument recursively.
+ * It then recursively calls itself, passing the same array without the last element */
 int_vector
 recursive(int_vector &vec, int vec_size)
 {
@@ -83,7 +86,12 @@ recursive(int_vector &vec, int vec_size)
 
 
 /* Brute force method with a twist
- * Explain this alg*/
+ * This algorithm is a spin off of the Kadane algorithm to find the max contiguous subarray given an array
+ * I found the Kadane algorithm here: http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+ *
+ * It effectively steps through the array once, keeping track of the smallest min subarray at the point where its
+ * current index is, and sets the final min sub array whenever this found min sub array is smaller than
+ * the current final min sub array. */
 int_vector
 efficientiterative(int_vector &vec, int vec_size)
 {

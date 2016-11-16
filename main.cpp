@@ -17,7 +17,7 @@ main()
     vec_of_int_vectors size_and_vec = parseinputfiledata(input_file_data);
 
     // Test algs with input.txt data
-    int_vector brute_res = brutewithtwist(size_and_vec[1], size_and_vec[0][0]);
+    int_vector brute_res = brute(size_and_vec[1], size_and_vec[0][0]);
     int_vector recursive_res = recursive(size_and_vec[1], size_and_vec[0][0]);
     int_vector iterative_res = efficientiterative(size_and_vec[1], size_and_vec[0][0]);
 
