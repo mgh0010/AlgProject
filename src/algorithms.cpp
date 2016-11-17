@@ -93,7 +93,7 @@ iterative(int_vector &vec, int vec_size)
 {
     int_vector min_vec;
     int abs_min = vec[0];
-    int local_min = vec[0];
+    int local_min = abs_min;
     int left_index = 0, right_index = left_index;
 
     for (int i = 1; i < vec_size; i++)
