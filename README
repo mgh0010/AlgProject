@@ -1,0 +1,17 @@
+Michael Harrison
+mgh0010@auburn.edu
+To run my program, use a linux computer, enter the terminal and find the /AlgProject folder. From this directory, enter the src/ directory and type in make. Then type ./runThis to run the program. Input.txt is expected to be in the /AlgProject folder. Output.txt and times.txt are in the /outputFiles folder.
+
+EX Run:
+	cd /AlgProject/src
+	make
+	./runThis
+
+EX FindingOutput.txt from having just run program:
+	cd ../outputFiles
+	vim output.txt
+
+NO-PLAGIARISM CERTIFICATION: I certify that I wrote the
+code I am submitting. I did not copy whole or parts of it from another student or have
+another person write the code for me. Any code I am reusing in my program is clearly
+marked as such with its source clearly identified in comments.
